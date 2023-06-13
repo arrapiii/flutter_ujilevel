@@ -1,7 +1,11 @@
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ujilevel/Pages/HomePage.dart';
+import 'package:flutter_ujilevel/Pages/LandingPage.dart';
+import 'package:flutter_ujilevel/methods/api.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -11,14 +15,36 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
-  bool password = true;
+  bool passwordd = true;
 
   late String message = '';
 
-  
+ void loginUser() async {
+    final data = {
+      'email': email.text.toString(),
+      'password': password.text.toString(),
+    };
+    final result = await Api().postRequest(route: '/loginapi', data: data);
+    final response = jsonDecode(result.body);
+    if (response['status'] == 200) {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      await preferences.setInt('user_id', response['relasi']);
+      await preferences.setString('name', response['user']['name']);
+      await preferences.setString('email', response['user']['email']);
+      await preferences.setString('token', response['token']);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(response['message']),
+        ),
+      );
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => MyHomePage(),
+     ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +97,7 @@ class _LoginState extends State<Login> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: TextField(
-                        controller: emailController,
+                        controller: email,
                         decoration: const InputDecoration(
                           // contentPadding: EdgeInsets.symmetric(horizontal: 10), ini buat ngasih jarak text
                           border: UnderlineInputBorder(),
@@ -93,19 +119,19 @@ class _LoginState extends State<Login> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: TextField(
-                        controller: passwordController,
+                        controller: password,
                         decoration: InputDecoration(
                             labelText: 'Password',
                             suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
-                                    password = !password;
+                                    passwordd = !passwordd;
                                   });
                                 },
                                 icon: Icon(password == false
                                     ? Icons.visibility
                                     : Icons.visibility_off))),
-                        obscureText: password,
+                        obscureText: passwordd,
                       ),
                     ),
                   ],
@@ -131,28 +157,15 @@ class _LoginState extends State<Login> {
                 ),
                 // Button Start
                 Center(
-                  child: Container(
-                      width: 320,
-                      height: 50,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.resolveWith<Color>(
-                                  (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              // return Colors
-                              //     .blue; // Mengatur warna latar belakang saat tombol ditekan menjadi merah
-                            }
-                            return const Color(
-                                0xFF0065FF); // Mengatur warna latar belakang saat tombol tidak ditekan menjadi biru
-                          }),
-                        ),
-                        onPressed: () {
-                          // Login(
-                          //     emailController, passwordController, "Realmi");
-                        },
-                        child: const Text('Continue'),
-                      )),
+                  child: InkWell(
+                    onTap: () {
+                      loginUser();
+                    },
+                    child: Container(
+                        width: 320,
+                        height: 50,
+                        child: Text('CONTINUE'),),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,

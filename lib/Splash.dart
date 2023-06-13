@@ -28,16 +28,19 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Lottie.asset(
-            "lottie/plane.json",
-            width: 400,
-          ),
-          LoadingAnimationWidget.inkDrop(color: Colors.blue, size: 40)
-        ],
+      body: Align(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Lottie.asset(
+              "lottie/plane.json",
+              width: 400,
+            ),
+            LoadingAnimationWidget.inkDrop(color: Colors.blue, size: 40)
+          ],
+        ),
       ),
     );
   }
