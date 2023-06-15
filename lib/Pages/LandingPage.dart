@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                             10),
                                                     image: const DecorationImage(
                                                         image: AssetImage(
-                                                            'assets/img/stress.jpg'),
+                                                            ''),
                                                         fit: BoxFit.cover),
                                                   ),
                                                   height: 50,
@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        snapshot.data['data']
+                                                         snapshot.data['data']
                                                             [index]['tempat'],
                                                         style:
                                                             GoogleFonts.poppins(
@@ -157,7 +157,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                             TextAlign.left,
                                                       ),
                                                       Text(
-                                                        "woiii",
+                                                         snapshot.data['data']
+                                                            [index]['tempat'],
                                                         style:
                                                             GoogleFonts.poppins(
                                                                 fontSize: 11,
@@ -215,7 +216,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                             width: 5,
                                                           ),
                                                           Text(
-                                                            'fhhyth',
+                                                             snapshot.data['data']
+                                                            [index]['waktu'],
                                                             style: GoogleFonts.poppins(
                                                                 fontSize: 12,
                                                                 fontWeight:
@@ -240,7 +242,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                             width: 5,
                                                           ),
                                                           Text(
-                                                            "sfrgrdg",
+                                                             snapshot.data['data']
+                                                            [index]['status'],
                                                             style: GoogleFonts.poppins(
                                                                 fontSize: 12,
                                                                 fontWeight:

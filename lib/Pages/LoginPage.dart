@@ -162,6 +162,8 @@ class _LoginState extends State<Login> {
                       loginUser();
                     },
                     child: Container(
+                      alignment: Alignment.center,
+                      color: Colors.blue,
                         width: 320,
                         height: 50,
                         child: Text('CONTINUE'),),

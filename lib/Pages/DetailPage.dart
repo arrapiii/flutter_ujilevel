@@ -20,7 +20,7 @@ class DetailPage extends StatelessWidget
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            Image.asset('images/hero1.png'),
+            Image.asset('images/hero1.jpeg'),
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -92,7 +92,7 @@ class DetailPage extends StatelessWidget
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child:
               Text(
-                  "Tugu Kujang adalah sebuah tugu yang merupakan ikon kota Bogor. Bentuknya menyerupai sebuah kujang, yakni senjata pusaka suku Sunda yang berasal dari Jawa Barat. Tugu Kujang dibangun pada 4 Mei 1982 pada masa pemerintahan walikota Achmad Sobana dengan biaya pembangunan mencapai 80 juta. Wikipedia \n\n Tugu Kujang adalah sebuah tugu yang merupakan ikon kota Bogor. Bentuknya menyerupai sebuah kujang, yakni senjata pusaka suku Sunda yang berasal dari Jawa Barat. Tugu Kujang dibangun pada 4 Mei 1982 pada masa pemerintahan walikota Achmad Sobana dengan biaya pembangunan mencapai 80 juta. Wikipedia",
+                  jadwal['hasil_konseling'],
                   style: TextStyle(fontSize: 12),
                   textAlign: TextAlign.justify,
                 )
