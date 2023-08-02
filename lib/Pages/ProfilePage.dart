@@ -101,27 +101,39 @@ class _ProfileState extends State<Profile> {
             child: Container(
               height: 700,
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              ),
+            ],),
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                     TextField(
+                    TextField(
+                      enabled: false,
                       decoration: InputDecoration(
                           // contentPadding: EdgeInsets.symmetric(horizontal: 10), ini buat ngasih jarak text
-                          border: UnderlineInputBorder(),
-                          labelText: widget.profile['namasiswa'], ///cara nampilin DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!!!!!!!
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide()
+                          ),
+                          labelText: widget.profile['namasiswa'],
                           labelStyle: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const TextField(
+                    TextField(
+                      enabled: false,
                       decoration: InputDecoration(
                           // contentPadding: EdgeInsets.symmetric(horizontal: 10), ini buat ngasih jarak text
                           border: UnderlineInputBorder(),
-                          labelText: 'Email',
+                          labelText: widget.profile['kelas'],
                           labelStyle: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
@@ -144,83 +156,86 @@ class _ProfileState extends State<Profile> {
                     //     obscureText: password,
 
                     // ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const TextField(
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
+                    TextField(
+                      enabled: false,
                       decoration: InputDecoration(
                           // contentPadding: EdgeInsets.symmetric(horizontal: 10), ini buat ngasih jarak text
                           border: UnderlineInputBorder(),
-                          labelText: 'No. Ktp',
+                          labelText: widget.profile['tempatlahir'],
                           labelStyle: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const TextField(
+                    TextField(
+                      enabled: false,
                       decoration: InputDecoration(
                           // contentPadding: EdgeInsets.symmetric(horizontal: 10), ini buat ngasih jarak text
                           border: UnderlineInputBorder(),
-                          labelText: 'Alamat',
+                          labelText: widget.profile['tanggallahir'],
                           labelStyle: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const TextField(
+                    TextField(
+                      enabled: false,
                       decoration: InputDecoration(
                           // contentPadding: EdgeInsets.symmetric(horizontal: 10), ini buat ngasih jarak text
                           border: UnderlineInputBorder(),
-                          labelText: 'No. Telp',
+                          labelText: widget.profile['jeniskelamin'],
                           labelStyle: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const TextField(
-                      decoration: InputDecoration(
-                          // contentPadding: EdgeInsets.symmetric(horizontal: 10), ini buat ngasih jarak text
-                          border: UnderlineInputBorder(),
-                          labelText: 'Tanggal lahir',
-                          labelStyle: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 14)),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Jenis Kelamin',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                        ),
-                        Container(
-                          child: DropdownButton<JenisKelamin?>(
-                            onChanged: (value) {
-                              setState(() {
-                                selectedValue = value;
-                              });
-                            },
-                            isExpanded: true,
-                            value: selectedValue,
-                            items: jenis
-                                .map<DropdownMenuItem<JenisKelamin?>>((e) =>
-                                    DropdownMenuItem(
-                                      child: Text((e?.name ?? ' ').toString()),
-                                      value: e,
-                                    ))
-                                .toList(),
-                          ),
-                        ),
-                      ],
-                    )
+                    // const TextField(
+                    //   decoration: InputDecoration(
+                    //       // contentPadding: EdgeInsets.symmetric(horizontal: 10), ini buat ngasih jarak text
+                    //       border: UnderlineInputBorder(),
+                    //       labelText: 'Tanggal lahir',
+                    //       labelStyle: TextStyle(
+                    //           fontWeight: FontWeight.w900, fontSize: 14)),
+                    // ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     const Text(
+                    //       'Jenis Kelamin',
+                    //       style: TextStyle(
+                    //         fontWeight: FontWeight.bold,
+                    //         fontSize: 14,
+                    //       ),
+                    //     ),
+                    //     Container(
+                    //       child: DropdownButton<JenisKelamin?>(
+                    //         onChanged: (value) {
+                    //           setState(() {
+                    //             selectedValue = value;
+                    //           });
+                    //         },
+                    //         isExpanded: true,
+                    //         value: selectedValue,
+                    //         items: jenis
+                    //             .map<DropdownMenuItem<JenisKelamin?>>((e) =>
+                    //                 DropdownMenuItem(
+                    //                   child: Text((e?.name ?? ' ').toString()),
+                    //                   value: e,
+                    //                 ))
+                    //             .toList(),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // )
                   ],
                 ),
               ),
