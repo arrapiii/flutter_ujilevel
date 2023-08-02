@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  final Map profile;
+
+  Profile({ super.key, required this.profile});
 
   @override
   State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  late SharedPreferences preferences;
+  
   // PickedFile? _pickedImage;
 
   // Future<void> _pickImage() async {
@@ -26,10 +32,6 @@ class _ProfileState extends State<Profile> {
     JenisKelamin(id: 2, name: "Perempuan")
   ];
 
-
-
-
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -40,14 +42,20 @@ class _ProfileState extends State<Profile> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.arrow_back_rounded)),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back_rounded)),
               Expanded(
                   child: Center(
-                child: Container(
-                  child: const Text(
-                    'Informasi Akun',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 30.0),
+                  child: Container(
+                    child: const Text(
+                      'Informasi Akun',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               )),
@@ -77,12 +85,11 @@ class _ProfileState extends State<Profile> {
                 ),
                 const Spacer(),
                 GestureDetector(
-                  onTap: () {
-                    
-                  },
-                  child: const Text('Ubah', style: TextStyle(
-                    color: Colors.blueAccent
-                  ),),
+                  onTap: () {},
+                  child: const Text(
+                    'Ubah',
+                    style: TextStyle(color: Colors.blueAccent),
+                  ),
                 )
               ],
             ),
@@ -91,25 +98,21 @@ class _ProfileState extends State<Profile> {
             height: 20,
           ),
           Container(
-            
             child: Container(
               height: 700,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    const TextField(
+                     TextField(
                       decoration: InputDecoration(
                           // contentPadding: EdgeInsets.symmetric(horizontal: 10), ini buat ngasih jarak text
                           border: UnderlineInputBorder(),
-                          labelText: 'Fullname',
+                          labelText: widget.profile['namasiswa'], ///cara nampilin DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!!!!!!!
                           labelStyle: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 14
-                          )),
+                              fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
                     const SizedBox(
                       height: 20,
@@ -120,9 +123,7 @@ class _ProfileState extends State<Profile> {
                           border: UnderlineInputBorder(),
                           labelText: 'Email',
                           labelStyle: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 14
-                          )),
+                              fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
                     const SizedBox(
                       height: 20,
@@ -133,9 +134,9 @@ class _ProfileState extends State<Profile> {
                     //       border: const UnderlineInputBorder(),
                     //       labelText: 'Password',
                     //        suffixIcon: IconButton(onPressed: (){
-                            
+
                     //       }, icon: Icon(password == false ? Icons.visibility : Icons.visibility_off)),
-                          
+
                     //       labelStyle: const TextStyle(
                     //         fontWeight: FontWeight.w900,
                     //         fontSize: 14
@@ -152,9 +153,7 @@ class _ProfileState extends State<Profile> {
                           border: UnderlineInputBorder(),
                           labelText: 'No. Ktp',
                           labelStyle: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 14
-                          )),
+                              fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
                     const SizedBox(
                       height: 20,
@@ -165,9 +164,7 @@ class _ProfileState extends State<Profile> {
                           border: UnderlineInputBorder(),
                           labelText: 'Alamat',
                           labelStyle: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 14
-                          )),
+                              fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
                     const SizedBox(
                       height: 20,
@@ -178,9 +175,7 @@ class _ProfileState extends State<Profile> {
                           border: UnderlineInputBorder(),
                           labelText: 'No. Telp',
                           labelStyle: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 14
-                          )),
+                              fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
                     const SizedBox(
                       height: 20,
@@ -191,9 +186,7 @@ class _ProfileState extends State<Profile> {
                           border: UnderlineInputBorder(),
                           labelText: 'Tanggal lahir',
                           labelStyle: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 14
-                          )),
+                              fontWeight: FontWeight.w900, fontSize: 14)),
                     ),
                     const SizedBox(
                       height: 20,
@@ -220,8 +213,7 @@ class _ProfileState extends State<Profile> {
                             items: jenis
                                 .map<DropdownMenuItem<JenisKelamin?>>((e) =>
                                     DropdownMenuItem(
-                                      child:
-                                          Text((e?.name ?? ' ').toString()),
+                                      child: Text((e?.name ?? ' ').toString()),
                                       value: e,
                                     ))
                                 .toList(),

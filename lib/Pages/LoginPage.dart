@@ -69,12 +69,12 @@ class _LoginState extends State<Login> {
                 const SizedBox(
                   height: 15,
                 ),
-                Center(
-                    child: Lottie.asset(
-                  'lottie/login.json',
-                  width: 270,
-                  height: 270,
-                )),
+                // Center(
+                //     child: Lottie.asset(
+                //   'lottie/login.json',
+                //   width: 270,
+                //   height: 270,
+                // )),
                 const SizedBox(
                   height: 15,
                 ),

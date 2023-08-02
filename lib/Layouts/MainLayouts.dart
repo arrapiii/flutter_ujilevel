@@ -3,7 +3,9 @@ import 'package:flutter_ujilevel/Pages/ProfilePage.dart';
 import '../Components/components.dart';
 
 class MainLayouts extends StatefulWidget {
-  const MainLayouts({super.key});
+ final Map<String, dynamic>? profileData;
+
+  const MainLayouts({super.key, required this.profileData});
 
   @override
   State<MainLayouts> createState() => _MainLayoutsState();
@@ -36,6 +38,8 @@ class _MainLayoutsState extends State<MainLayouts> {
     }
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +47,11 @@ class _MainLayoutsState extends State<MainLayouts> {
       body: PageView(
         controller: _pageController,
         onPageChanged: pageChanged,
-        children: const <Widget>[
+        children:  <Widget>[
           Text("homepage"),
           Text('Search'),
           Text('Watchlist'),
-          Profile(),
+          Profile(profile: {}),
         ],
       ),
       bottomNavigationBar: Container(

@@ -13,14 +13,28 @@ class DetailPage extends StatelessWidget
   {
     return Scaffold
     (
+       appBar: AppBar(
+        // Menghilangkan warna latar belakang dan bayangan
+        backgroundColor: Color.fromARGB(255, 0, 136, 255),
+
+        iconTheme: IconThemeData(
+            color: Colors.black), // Mengubah warna ikon menjadi hitam
+
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),),
       body: SafeArea
+      
       (
         child: SingleChildScrollView
         (
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            Image.asset('images/hero1.jpeg'),
+            Image.asset('assets/images/hero1.jpeg'),
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -31,7 +45,7 @@ class DetailPage extends StatelessWidget
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(jadwal['tempat'],
+                      Text(jadwal['tempat'] ?? '--:--',
                       style: TextStyle
                       (
                           fontWeight:FontWeight.w700
@@ -92,7 +106,7 @@ class DetailPage extends StatelessWidget
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child:
               Text(
-                  jadwal['hasil_konseling'],
+                  jadwal['hasil_konseling'] ?? 'Hasil belum di input',
                   style: TextStyle(fontSize: 12),
                   textAlign: TextAlign.justify,
                 )

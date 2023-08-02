@@ -34,10 +34,10 @@ class _SplashState extends State<Splash> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Lottie.asset(
-              "lottie/plane.json",
-              width: 400,
-            ),
+            // Lottie.asset(
+            //   "lottie/plane.json",
+            //   width: 400,
+            // ),
             LoadingAnimationWidget.inkDrop(color: Colors.blue, size: 40)
           ],
         ),
