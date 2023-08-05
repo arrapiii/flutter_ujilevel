@@ -403,8 +403,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                     children: [
                                                                       Text(
                                                                         snapshot.data['data'][index]
-                                                                            [
-                                                                            'tempat'],
+                                                                           ['layanan_bk']['jenis_layanan'],
                                                                         style: GoogleFonts.poppins(
                                                                             fontSize:
                                                                                 14,

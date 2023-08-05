@@ -39,78 +39,383 @@ class DetailPage extends StatelessWidget
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(jadwal['tempat'] ?? '--:--',
-                      style: TextStyle
-                      (
-                          fontWeight:FontWeight.w700
-                      ),),
-                      SizedBox(height: 10),
-                      Text("Bogor,Jawabarat",
-                      style: TextStyle
-                      (
-                          fontWeight:FontWeight.w400
-                      ),),
-                    ],
+              Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(30),
+                    topLeft: Radius.circular(30),
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.favorite,color: Colors.amber[400]),
-                      const Text(" 9.9")
-                    ],
-                  )
-                ],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5), // Warna dan opasitas bayangan
+                      spreadRadius: 5, // Besar bayangan (semakin besar, semakin lebar bayangan)
+                      blurRadius: 7, // Jumlah blur pada bayangan (semakin besar, semakin samar)
+                      offset: Offset(0, 3), // Posisi bayangan (x, y
+                    )
+                  ],
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Detail Bimbingan',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.blueAccent[400],
+                                ),
+                                ),
+                                SizedBox(height: 10,),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Nama Siswa',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      ':',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      jadwal['siswa']['namasiswa'],
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Jenis Bimbingan',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      ':',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      jadwal['layanan_bk']['jenis_layanan'],
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Nama Pembimbing',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      ':',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      jadwal['guru']['namaguru'],
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Waktu',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      ':',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      jadwal['waktu'],
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Tempat',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      ':',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      jadwal['tempat'],
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Status',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      ':',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      jadwal['status'],
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Hasil Konseling',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      ':',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    Text(
+                                      jadwal['hasil_konseling'] ?? 'Hasil belum di input',
+                                       style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.blueAccent[400],
+                                      ),
+                                      
+                                      ),
+                                  ],
+                                ),
+                                   SizedBox(height: 10,),
+                                // Text(
+                                //   'Jenis Bimbingan',
+                                //    style: TextStyle(
+                                //   fontSize: 15,
+                                //   fontWeight: FontWeight.w300,
+                                //   color: Colors.blueAccent[400],
+                                //   ),
+                                //   ),
+                                //    SizedBox(height: 10,),
+                                // Text(
+                                //   'Nama Pembimbing',
+                                //    style: TextStyle(
+                                //   fontSize: 15,
+                                //   fontWeight: FontWeight.w300,
+                                //   color: Colors.blueAccent[400],
+                                //   ),
+                                //   ),
+                                //    SizedBox(height: 10,),
+                                // Text(
+                                //   'Waktu',
+                                //    style: TextStyle(
+                                //   fontSize: 15,
+                                //   fontWeight: FontWeight.w300,
+                                //   color: Colors.blueAccent[400],
+                                //   ),
+                                //   ),
+                                //    SizedBox(height: 10,),
+                                // Text(
+                                //   'Tempat',
+                                //    style: TextStyle(
+                                //   fontSize: 15,
+                                //   fontWeight: FontWeight.w300,
+                                //   color: Colors.blueAccent[400],
+                                //   ),
+                                //   ),
+                                //    SizedBox(height: 10,),
+                                // Text(
+                                //   'Status',
+                                //    style: TextStyle(
+                                //   fontSize: 15,
+                                //   fontWeight: FontWeight.w300,
+                                //   color: Colors.blueAccent[400],
+                                //   ),
+                                //   ),
+                            ],
+                          )
+                        ],
+                      ),
+                      )
+                  ],
+                ),
+                // child: Padding(
+                //   padding: const EdgeInsets.all(20.0),
+                //   child: Row(
+                //     children: [
+                //       Column(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //           Row(
+                //             crossAxisAlignment: CrossAxisAlignment.start,
+                //             children: [
+                //               Text(
+                //                 'Detail Bimbingan',
+                //                 style: TextStyle(
+                //                   color: Colors.blueAccent[400],
+                //                   fontWeight: FontWeight.w900,
+                //                   fontSize: 19,
+                //                 ),
+                //                 ),
+                //                 Text('data')
+                //             ],
+                //           ),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ),
+              )
               ),
-            ),
-            const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row
-              (
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column
-                  (
-                    children: [
-                      Icon(Icons.call,color:Colors.green[400]),
-                      const SizedBox(height: 10),
-                      const Text("CALL",style: TextStyle(fontSize: 12),)
-                    ],
-                  ),
-                  Column
-                  (
-                    children: [
-                      Icon(Icons.near_me,color:Colors.green[400]),
-                      const SizedBox(height: 10),
-                      const Text("MAP",style: TextStyle(fontSize: 12),)
-                    ],
-                  ),
-                  Column
-                  (
-                    children: [
-                      Icon(Icons.share,color:Colors.green[400]),
-                      const SizedBox(height: 10),
-                      const Text("SHARE",style: TextStyle(fontSize: 12),)
-                    ],
-                  ),
-                ],
               ),
-            ),
-            SizedBox(height: 30)
-,            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child:
-              Text(
-                  jadwal['hasil_konseling'] ?? 'Hasil belum di input',
-                  style: TextStyle(fontSize: 12),
-                  textAlign: TextAlign.justify,
-                )
-            )
           ]),
         ),
       ),
