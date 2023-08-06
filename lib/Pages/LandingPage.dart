@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_ujilevel/Components/BottomNav.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_ujilevel/Pages/DetailPage.dart';
+import 'MyNavigation.dart';
 import 'ProfilePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
@@ -259,17 +261,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       }
                     },
                   ),
-                  //read
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(12)),
-                    padding: EdgeInsets.all(12),
-                    child: Icon(
-                      Icons.remove_red_eye_sharp,
-                      color: Colors.white,
-                    ),
-                  ),
                   //update
                   Container(
                     decoration: BoxDecoration(
@@ -307,7 +298,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Container(
                           child: Column(
                             children: [
-                              Text(preferences.getString('name').toString()),
+                              // Text(preferences.getString('name').toString()),
                               Container(
                                 height: MediaQuery.of(context).size.height / 1,
                                 child: isLoading

@@ -83,14 +83,6 @@ class _ProfileState extends State<Profile> {
                   'Info Profile',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                 ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () {},
-                  child: const Text(
-                    'Ubah',
-                    style: TextStyle(color: Colors.blueAccent),
-                  ),
-                )
               ],
             ),
           ),

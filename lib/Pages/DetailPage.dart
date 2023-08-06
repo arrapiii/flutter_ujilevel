@@ -339,7 +339,7 @@ class DetailPage extends StatelessWidget
                                 // Text(
                                 //   'Jenis Bimbingan',
                                 //    style: TextStyle(
-                                //   fontSize: 15,
+                                //   fontSize: 14,
                                 //   fontWeight: FontWeight.w300,
                                 //   color: Colors.blueAccent[400],
                                 //   ),
@@ -348,7 +348,7 @@ class DetailPage extends StatelessWidget
                                 // Text(
                                 //   'Nama Pembimbing',
                                 //    style: TextStyle(
-                                //   fontSize: 15,
+                                //   fontSize: 14,
                                 //   fontWeight: FontWeight.w300,
                                 //   color: Colors.blueAccent[400],
                                 //   ),
@@ -357,7 +357,7 @@ class DetailPage extends StatelessWidget
                                 // Text(
                                 //   'Waktu',
                                 //    style: TextStyle(
-                                //   fontSize: 15,
+                                //   fontSize: 14,
                                 //   fontWeight: FontWeight.w300,
                                 //   color: Colors.blueAccent[400],
                                 //   ),
@@ -366,7 +366,7 @@ class DetailPage extends StatelessWidget
                                 // Text(
                                 //   'Tempat',
                                 //    style: TextStyle(
-                                //   fontSize: 15,
+                                //   fontSize: 14,
                                 //   fontWeight: FontWeight.w300,
                                 //   color: Colors.blueAccent[400],
                                 //   ),
@@ -375,7 +375,7 @@ class DetailPage extends StatelessWidget
                                 // Text(
                                 //   'Status',
                                 //    style: TextStyle(
-                                //   fontSize: 15,
+                                //   fontSize: 14,
                                 //   fontWeight: FontWeight.w300,
                                 //   color: Colors.blueAccent[400],
                                 //   ),
