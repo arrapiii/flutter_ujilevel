@@ -10,14 +10,15 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'FormPage.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class Riwayat extends StatefulWidget {
+  final Map jadwal;
+  Riwayat({super.key, required this.jadwal});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Riwayat> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<Riwayat> {
   var currentIndex = 0;
   late SharedPreferences preferences;
   @override
@@ -42,21 +43,29 @@ class _MyHomePageState extends State<MyHomePage> {
     String user = userId.toString();
     final String urlj = 'http://127.0.0.1:8000/api/getjadwal?id=' + user;
     var response = await http.get(Uri.parse(urlj));
+    print(response.body);
+    return jsonDecode(response.body);
+  }
+
+  Future updateJadwal(id) async {
+    int userId = preferences.getInt('user_id') ?? 0;
+    String user = userId.toString();
+    final String urlj = 'http://127.0.0.1:8000/api/jadwal/update/' + id;
+    var response = await http.get(Uri.parse(urlj));
     return jsonDecode(response.body);
   }
 
   Future<Map<String, dynamic>> getProfile() async {
-  int userId = preferences.getInt('user_id') ?? 0;
-  String user = userId.toString();
-  final String urlj = 'http://127.0.0.1:8000/api/profilesiswa?id=' + user;
-  var response = await http.get(Uri.parse(urlj));
-  if (response.statusCode == 200) {
-    return jsonDecode(response.body);
-  } else {
-    throw Exception('Failed to load profile data');
+    int userId = preferences.getInt('user_id') ?? 0;
+    String user = userId.toString();
+    final String urlj = 'http://127.0.0.1:8000/api/profilesiswa?id=' + user;
+    var response = await http.get(Uri.parse(urlj));
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load profile data');
+    }
   }
-}
-
 
   bool isLoading = false;
   void getUserData() async {
@@ -72,219 +81,50 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0.0,
-      //   toolbarHeight: 70,
-      //   title: Text("Riwayat Jadwal"),
-      //   centerTitle: true,
-      //   flexibleSpace: Container(
-      //     decoration: BoxDecoration(
-      //         borderRadius: BorderRadius.only(
-      //             bottomLeft: Radius.circular(20),
-      //             bottomRight: Radius.circular(20)),
-      //         gradient: LinearGradient(
-      //             colors: [Color(0xff30A2FF), Color(0xff30A2FF)],
-      //             begin: Alignment.bottomCenter,
-      //             end: Alignment.topCenter)),
-      //   ),
-      // ),
+      backgroundColor: Color.fromARGB(234, 242, 255, 255),
+      appBar: AppBar(
+        // Menghilangkan warna latar belakang dan bayangan
+        backgroundColor: Color.fromARGB(234, 242, 255, 255),
+
+        iconTheme: IconThemeData(
+            color: Colors.black), // Mengubah warna ikon menjadi hitam
+
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        centerTitle: true,
+        title: Text(
+          "Riwayat Jadwal",
+          style: GoogleFonts.poppins(
+              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+        elevation: 0,
+        // appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        //   elevation: 0.0,
+        //   toolbarHeight: 70,
+        //   title: Text("Riwayat Jadwal"),
+        //   centerTitle: true,
+        //   flexibleSpace: Container(
+        //     decoration: BoxDecoration(
+        //         borderRadius: BorderRadius.only(
+        //             bottomLeft: Radius.circular(20),
+        //             bottomRight: Radius.circular(20)),
+        //         gradient: LinearGradient(
+        //             colors: [Color(0xff30A2FF), Color(0xff30A2FF)],
+        //             begin: Alignment.bottomCenter,
+        //             end: Alignment.topCenter)),
+        //   ),
+        // ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Column(
             children: [
-              //
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Section Profil
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        preferences.getString('name').toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24.0),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        '13 June, 2023',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ],
-                  ),
-
-                  Column(
-                    children: [
-                      //future builder
-                      // Use FutureBuilder to fetch profile data
-                      FutureBuilder<Map<String, dynamic>>(
-                        future: getProfile(),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            if (snapshot.hasError) {
-                              return Text(
-                                  'Error occurred while fetching profile');
-                            } else {
-                              return InkWell(
-                                onTap: () {
-                                  // Navigate to the Profile page with the fetched data
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Profile(
-                                        profile: snapshot.data?['data'],
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(12)),
-                                  padding: EdgeInsets.all(12),
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              );
-                            }
-                          } else {
-                            return CircularProgressIndicator();
-                          }
-                        },
-                      ),
-                    ],
-                  )
-                ],
-              ),
-
-              SizedBox(
-                height: 25,
-              ),
-
-              // search bar
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: EdgeInsets.all(12),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      'Search',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-
-              SizedBox(
-                height: 20,
-              ),
-
-              // Fungsi Dashboard
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Jadwal Konseling',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Icon(
-                    Icons.more_horiz,
-                    color: Colors.white,
-                  ),
-                ],
-              ),
-
-              SizedBox(
-                height: 25,
-              ),
-
-              //
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  //create
-                  FutureBuilder(
-                    future: createJadwal(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        if (snapshot.hasError) {
-                          return Text('Error occurred while fetching profile');
-                        } else {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => FormPage(
-                                            jadwal: snapshot.data['data'],
-                                          )));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(12)),
-                              padding: EdgeInsets.all(12),
-                              child: Icon(
-                                Icons.create_new_folder,
-                                color: Colors.white,
-                              ),
-                            ),
-                          );
-                        }
-                      } else {
-                        return CircularProgressIndicator();
-                      }
-                    },
-                  ),
-                  //update
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(12)),
-                    padding: EdgeInsets.all(12),
-                    child: Icon(
-                      Icons.create,
-                      color: Colors.white,
-                    ),
-                  ),
-                  //delete
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(12)),
-                    padding: EdgeInsets.all(12),
-                    child: Icon(
-                      Icons.delete,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-
               //  SizedBox(
               //   height: 10,
               //  ),
@@ -314,16 +154,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 itemBuilder: (context, index) {
                                                   return InkWell(
                                                     onTap: () {
+                                                      print(snapshot.data['data']);
                                                       Navigator.push(
                                                         context,
+                                                        
                                                         MaterialPageRoute(
+                                                          
                                                             builder:
                                                                 (context) =>
                                                                     DetailPage(
                                                                       jadwalData: snapshot
                                                                               .data['data']
-                                                                          [
-                                                                          index],
+                                                                          [index],
                                                                     )),
                                                       );
                                                     },
@@ -392,8 +234,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                             .start,
                                                                     children: [
                                                                       Text(
-                                                                        snapshot.data['data'][index]
-                                                                           ['layanan_bk']['jenis_layanan'],
+                                                                        snapshot.data['data'][index]['layanan_bk']
+                                                                            [
+                                                                            'jenis_layanan'],
                                                                         style: GoogleFonts.poppins(
                                                                             fontSize:
                                                                                 14,

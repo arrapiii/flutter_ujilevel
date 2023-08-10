@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ujilevel/Pages/HomePage.dart';
+import 'package:flutter_ujilevel/Pages/Homenew.dart';
 import 'package:flutter_ujilevel/Pages/LandingPage.dart';
 import 'package:flutter_ujilevel/methods/api.dart';
 import 'package:lottie/lottie.dart';
@@ -41,7 +42,7 @@ class _LoginState extends State<Login> {
         ),
       );
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => MyHomePage(),
+        builder: (context) => Homenew(),
      ));
     }
   }
@@ -69,12 +70,7 @@ class _LoginState extends State<Login> {
                 const SizedBox(
                   height: 15,
                 ),
-                Center(
-                    child: Lottie.asset(
-                  'lottie/login.json',
-                  width: 270,
-                  height: 270,
-                )),
+                
                 const SizedBox(
                   height: 15,
                 ),
@@ -185,7 +181,6 @@ class _LoginState extends State<Login> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('New to Logistic? '),
                     GestureDetector(
                         onTap: () => {
                               Navigator.push(
